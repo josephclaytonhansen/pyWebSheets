@@ -38,3 +38,10 @@ This class  contains a `set` function, which allows the value of a row/column ce
 ```
 ## Getting and changing between tags
 `getLines` takes data from `readHTML` and finds the lines containing any given HTML tag such as `<p>` or `<input>`, returning them as a list. This list can be used for `getBetweenTags`, which takes one line and isolates the content between given tags. `changeBetweenTags` takes this a step further by allowing the content between tags on the specified line to be replaced. `writeHTML` updates the HTML document with any changes made this way. 
+## TODO
+### tableObject:
+- [ ] addRow()
+- [ ] addColumn()
+- [ ] clear(row, column)
+### General
+- [ ] update writeHTML to add tables back to HTML
