@@ -28,15 +28,7 @@ Notice that cells and data are stored in a nested array- columns and rows. `t.ce
 Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,0)` would give you `"one"` with this table. **Because rows and columns work the way they would in a spreadsheet with this function, it should always be used instead of accessing data from `tableObject.cells`.**
 
 ## Setting a cell value
-This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Use as `tableObject.set(row,column,value)`.
-```python
->>> t.set(0,1,"new_value")
->>> t.text
-'                <td>one</td>\n                <td>new_value</td>\n                <td>two</td>\n                <td>four</td>\n'
->>> t.data
-[['                <td>one</td>', '                <td>new_value</td>'], ['                <td>two</td>', '                <td>four</td>']]
-```
-In combination with `tableObject.get()`, you can see better what's happening:
+This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Use as `tableObject.set(row,column,value)`. This works very well in combination with `tableObject.get()`:
 ```python
 >>> t.get(0,1)
 'two'
