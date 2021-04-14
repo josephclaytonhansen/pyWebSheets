@@ -14,8 +14,8 @@ three | four
 
 `tableObject` contains:
 * cells (line references to the HTML document), for example:
-`t.cells: [[10, 15], [11, 16]]`
-notice that cells and data are stored in a nested array- columns and rows. `t.cells[0][1]` will give you the first column and the second row. This is not the best way to access this data: it's both confusing in order and choked up with excess data. Use `tableObject.get(row,column)`.
+`t.cells: [[10, 15], [11, 16]]`.
+Notice that cells and data are stored in a nested array- columns and rows. `t.cells[0][1]` will give you the first column and the second row. **This is not the best way to access this data: it's both confusing in order and choked up with excess data. Use `tableObject.get(row,column)`.**
 * data (the actual content of the line):
 `t.data: [['                <td>one</td>', '                <td>three</td>'], ['                <td>two</td>', '                <td>four</td>']]'`
 * start position (first line) of the table:
