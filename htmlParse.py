@@ -92,6 +92,9 @@ class tableObject():
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
                 self.text = self.text + self.data[x][y]+"\n"
+
+    def get(self, row, column):
+        return self.data[row][column][self.data[row][column].find("<td>")+4:self.data[row][column].find("</td>")]
     
 def writeHTML(data, path):
     html = ""
@@ -101,4 +104,4 @@ def writeHTML(data, path):
     with open(path, "w") as writefile:
         writefile.write(html)
         
-be_read = readHTML("/Users/frozendessertsupplies/Desktop/index.html")
+be_read = readHTML("/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html")
