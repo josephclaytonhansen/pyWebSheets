@@ -14,8 +14,8 @@ three | four
 
 `tableObject` contains:
 * cells (line references to the HTML document), for example:
-`t.cells: [[10, 15], [11, 16]]`
-notice that cells and data are stored in a nested array- rows and columns. `t.cells[0][1]` will give you the first row and the second column. 
+`t.cells: [[10, 15], [11, 16]]`.
+Notice that cells and data are stored in a nested array- columns and rows. `t.cells[0][1]` will give you the first column and the second row. **This is not the best way to access this data: it's both confusing in order and choked up with excess data. Use `tableObject.get(row,column)`.**
 * data (the actual content of the line):
 `t.data: [['                <td>one</td>', '                <td>three</td>'], ['                <td>two</td>', '                <td>four</td>']]'`
 * start position (first line) of the table:
@@ -24,8 +24,11 @@ notice that cells and data are stored in a nested array- rows and columns. `t.ce
 `t.end: 19`
 * and the pure HTML text, for adding into the main HTML: `t.text: '                <td>one</td>\n                <td>three</td>\n                <td>two</td>\n                <td>four</td>\n'`
 
+## Getting a cell value
+Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,0)` would give you `"one"` with this table.
+
 ## Setting a cell value
-This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Parameters: row, column, value
+This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Use as `tableObject.set(row,column,value)`.
 ```python
 >>> t.set(0,1,"new_value")
 >>> t.text
