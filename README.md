@@ -24,8 +24,11 @@ notice that cells and data are stored in a nested array- rows and columns. `t.ce
 `t.end: 19`
 * and the pure HTML text, for adding into the main HTML: `t.text: '                <td>one</td>\n                <td>three</td>\n                <td>two</td>\n                <td>four</td>\n'`
 
+## Getting a cell value
+Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,0)` would give you `"one"` with this table.
+
 ## Setting a cell value
-This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Parameters: row, column, value
+This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Use as `tableObject.set(row,column,value)`.
 ```python
 >>> t.set(0,1,"new_value")
 >>> t.text
