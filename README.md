@@ -26,6 +26,8 @@ Notice that cells and data are stored in a nested array- columns and rows. `t.ce
 
 ## Getting a cell value
 Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,1)` would give you `"two"` with this table. **Because rows and columns work the way they would in a spreadsheet with this function, it should always be used instead of accessing data from `tableObject.cells`.** 
+
+## Getting a cell value as type 
 `tableObject.getT` returns the cell value as *type*: `tableObject.getT(row,column,type`, where type is 'i' for integer, 'f' for float, or 'b' for bool. String is the default, `get` will always return a string. `getT` is not for strings. 
 
 ## Setting a cell value
