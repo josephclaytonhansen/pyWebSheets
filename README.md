@@ -2,10 +2,11 @@
  Edit HTML tables from Python- a tool to help convert spreadsheets to HTML with back-end functionality. So far there's not much going on, I'll add to this readme as I go. This is for work, so it takes lower priority than my other projects. 
  
  ## Basic usage- pulling a table from HTML:
+ Pretty much everything happens with a `tableObject`. This object relies on the `getTable` function. The usage for defining a `tableObject` is:
 ```python
 t= tableObject(getTable(readHTML(path), table_id), readHTML(path))
 ```
-Given an example table:
+Given an example table starting at line 7, with the first cell at line 10:
 
 one | two
 -----|----
