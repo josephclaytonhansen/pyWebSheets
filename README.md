@@ -5,6 +5,11 @@
 ```python
 t= tableObject(getTable(readHTML(path), table_id), readHTML(path))
 ```
+Given an example table:
+
+one | two
+-----|----
+three | four
 
 `tableObject` contains:
 * cells (line references to the HTML document), for example:
