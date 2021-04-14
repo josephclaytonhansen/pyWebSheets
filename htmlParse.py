@@ -76,11 +76,11 @@ class tableObject():
         
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.data[x][y] = data[self.data[y][x]]
+                self.data[x][y] = data[self.data[x][y]]
 
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.text = self.text + self.data[y][x]+"\n"
+                self.text = self.text + self.data[x][y]+"\n"
 
     def set(self, row, column, value):
         self.value = value
@@ -91,7 +91,7 @@ class tableObject():
         self.text = ""
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.text = self.text + self.data[y][x]+"\n"
+                self.text = self.text + self.data[x][y]+"\n"
 
     def get(self, row, column):
         return self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")]
