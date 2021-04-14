@@ -25,7 +25,8 @@ Notice that cells and data are stored in a nested array- columns and rows. `t.ce
 * and the pure HTML text, for adding into the main HTML: `t.text: '                <td>one</td>\n                <td>three</td>\n                <td>two</td>\n                <td>four</td>\n'`
 
 ## Getting a cell value
-Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,1)` would give you `"two"` with this table. **Because rows and columns work the way they would in a spreadsheet with this function, it should always be used instead of accessing data from `tableObject.cells`.**
+Use `tableObject.get(row,column)` to get the value of a cell (stripped of whitespace and tags.) For example, `t.get(0,1)` would give you `"two"` with this table. **Because rows and columns work the way they would in a spreadsheet with this function, it should always be used instead of accessing data from `tableObject.cells`.** 
+`tableObject.getT` returns the cell value as *type*: `tableObject.getT(row,column,type`, where type is 'i' for integer, 'f' for float, or 'b' for bool. String is the default, `get` will always return a string. `getT` is not for strings. 
 
 ## Setting a cell value
 This class  contains a `set` function, which allows the value of a row/column cell to be changed. This updates `t.text` as well, allowing for easy table editing that copies over into the HTML document. Use as `tableObject.set(row,column,value)`. This works very well in combination with `tableObject.get()`:
