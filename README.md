@@ -36,5 +36,13 @@ This class  contains a `set` function, which allows the value of a row/column ce
 >>> t.data
 [['                <td>one</td>', '                <td>new_value</td>'], ['                <td>two</td>', '                <td>four</td>']]
 ```
+In combination with `tableObject.get()`, you can see better what's happening:
+```python
+>>> t.get(0,1)
+'two'
+>>> t.set(0,1,"new")
+>>> t.get(0,1)
+'new'
+```
 ## Getting and changing between tags
 `getLines` takes data from `readHTML` and finds the lines containing any given HTML tag such as `<p>` or `<input>`, returning them as a list. This list can be used for `getBetweenTags`, which takes one line and isolates the content between given tags. `changeBetweenTags` takes this a step further by allowing the content between tags on the specified line to be replaced. `writeHTML` updates the HTML document with any changes made this way. 
