@@ -94,7 +94,7 @@ class tableObject():
                 self.text = self.text + self.data[x][y]+"\n"
 
     def get(self, row, column):
-        return self.data[row][column][self.data[row][column].find("<td>")+4:self.data[row][column].find("</td>")]
+        return self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")]
     
 def writeHTML(data, path):
     html = ""
