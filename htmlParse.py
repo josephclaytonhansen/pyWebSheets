@@ -95,7 +95,18 @@ class tableObject():
 
     def get(self, row, column):
         return self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")]
-    
+
+    def getT(self,row,column,t):
+        if t.startswith('i'):
+            return int(self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")])
+        elif t.startswith('f'):
+            return float(self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")])
+        elif t.startswith('b'):
+            return bool(self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")])
+
+
+
+
 def writeHTML(data, path):
     html = ""
     for k in data:
