@@ -76,22 +76,22 @@ class tableObject():
         
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.data[x][y] = data[self.data[x][y]]
+                self.data[x][y] = data[self.data[y][x]]
 
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.text = self.text + self.data[x][y]+"\n"
+                self.text = self.text + self.data[y][x]+"\n"
 
     def set(self, row, column, value):
         self.value = value
-        self.s_index = self.data[row][column].find("<td>")+4
-        self.e_index = self.data[row][column].find("</td>")
-        self.new_line = self.data[row][column][:self.s_index] + self.value + "</td>"
-        self.data[row][column] = self.new_line
+        self.s_index = self.data[column][row].find("<td>")+4
+        self.e_index = self.data[column][row].find("</td>")
+        self.new_line = self.data[column][row][:self.s_index] + self.value + "</td>"
+        self.data[column][row] = self.new_line
         self.text = ""
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
-                self.text = self.text + self.data[x][y]+"\n"
+                self.text = self.text + self.data[y][x]+"\n"
 
     def get(self, row, column):
         return self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")]
