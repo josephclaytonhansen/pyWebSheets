@@ -1,4 +1,5 @@
 # pyWebSheets
+ ### Given an HTML file containing tables, edit it through Python in a spread-sheet similar fashion
  Edit HTML tables from Python- a tool to help convert spreadsheets to HTML with back-end functionality. So far there's not much going on, I'll add to this readme as I go. This is for work, so it takes lower priority than my other projects. 
  
  ## Basic usage- pulling a table from HTML:
