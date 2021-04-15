@@ -36,6 +36,9 @@ This class  contains a `set` function, which allows the value of a row/column ce
 >>> t.get(0,1)
 'new'
 ```
+## Updating HTML with changes
+Once changes have been made to the table, use `tableObject.putBack(path)` to re-write the HTML file with the updates. `writeHTML` is for changes made by `changeBetweenTags`- **don't use `writeHTML` to put a table back (it won't work.)** Generally speaking, you'll use `putBack()` for all your HTML updating needs.
+
 ## Getting and changing between tags
 `getLines` takes data from `readHTML` and finds the lines containing any given HTML tag such as `<p>` or `<input>`, returning them as a list. This list can be used for `getBetweenTags`, which takes one line and isolates the content between given tags. `changeBetweenTags` takes this a step further by allowing the content between tags on the specified line to be replaced. `writeHTML` updates the HTML document with any changes made this way. 
 ## TODO
@@ -43,5 +46,3 @@ This class  contains a `set` function, which allows the value of a row/column ce
 - [ ] addRow()
 - [ ] addColumn()
 - [ ] clear(row, column)
-### General
-- [ ] update writeHTML to add tables back to HTML
