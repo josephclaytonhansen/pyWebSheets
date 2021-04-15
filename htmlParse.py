@@ -80,12 +80,13 @@ def getTable(data, table_id):
             active_row= 0
         tmp_rows[active_row].append(g+start_line)
         print(tmp_rows)
-    distance_between = len(cells)-1
+        distance_between = int(n_columns + 2)
+        print(distance_between)
     new_tm = []
     for k in range(n_columns):
         new_tm.append([])
-        new_tm[k].append(cells[k]+start_line)
-        new_tm[k].append(cells[k]+start_line+distance_between)
+        for x in range(n_columns - 1):
+            new_tm[k].append(cells[k]+start_line+(distance_between*x))
         print(new_tm)
         
     n_rows = new_tm
@@ -187,18 +188,8 @@ class tableObject():
             writefile.write(html)
 
     def addRow(self):
+        pass
         #add <td></td> to the END of each <tr> segment, and get the line number Y > X
-        for x in range(len(self.data)):
-            for y in range(len(self.data[x])):
-                if x >= 0:
-                    prev = self.data[x-1][y][:self.data[x-1][y].find("<")]+"<td></td>"
-                    print(prev)
-                if x > 0:
-                    self.cells[x][y] += x
-            self.data[x].append(prev)
-            self.end += 1
-            
-
         #for each <tr> segment, increase self.end by 1
         #for each sub-list in self.cells, append the <td> line number to the sub-list
         
