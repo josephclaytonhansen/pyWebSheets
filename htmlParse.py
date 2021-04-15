@@ -82,7 +82,27 @@ class tableObject():
             for y in range(len(self.data[x])):
                 self.text = self.text + self.data[x][y]+"\n"
 
-    def set(self, row, column, value):
+    def letterToColumn(self, letter):
+        letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                   "K", "L", "M", "N", "O", "P", "Q", "R", "T", "U",
+                   "V", "W", "X", "Y", "Z", "AA", "BB", "CC", "DD",
+                   "EE", "FF", "GG", "HH", "II", "JJ", "KK", "LL",
+                   "MM", "NN", "OO", "PP", "QQ", "RR", "SS", "TT",
+                   "UU", "VV", "WW", "XX", "YY", "ZZ"]
+        if letter[0].upper() in letters:
+            return letters.index(letter[0].upper())
+        elif letter[0:1].upper() in letters:
+            return letters.index(letter[0:1].upper())
+
+
+    def set(self, notation = None, value="", row=0, column=0):
+        if notation != None:
+            column = self.letterToColumn(notation)
+            if len(notation) == 2:
+                row = int(notation[1])-1
+            elif len(notation) == 3:
+                row = int(notation[2])-1
+                
         self.value = value
         self.s_index = self.data[column][row].find("<td>")+4
         self.e_index = self.data[column][row].find("</td>")
@@ -93,7 +113,14 @@ class tableObject():
             for y in range(len(self.data[x])):
                 self.text = self.text + self.data[x][y]+"\n"
 
-    def get(self, row, column, t='s'):
+    def get(self, notation = None, row=0, column=0, t='s'):
+        if notation != None:
+            column = self.letterToColumn(notation)
+            if len(notation) == 2:
+                row = int(notation[1])-1
+            elif len(notation) == 3:
+                row = int(notation[2])-1
+                
         if t.startswith('i'):
             return int(self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")])
         elif t.startswith('f'):
@@ -144,5 +171,5 @@ def writeHTML(data, path):
 
 
     
-path = "/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html"     
+path = "/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html"
 r = readHTML(path)
