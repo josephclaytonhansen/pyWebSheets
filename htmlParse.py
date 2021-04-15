@@ -2,7 +2,8 @@ import copy
 
 def readHTML(path):
     with open(path, "r") as readfile:
-        r = readfile.read().split("\n")
+        r=readfile.read().strip()
+        r = r.split("\n")
         return r
 
 def getLines(data, tag):
@@ -103,7 +104,7 @@ class tableObject():
             elif len(notation) == 3:
                 row = int(notation[2])-1
                 
-        self.value = value
+        self.value = str(value)
         self.s_index = self.data[column][row].find("<td>")+4
         self.e_index = self.data[column][row].find("</td>")
         self.new_line = self.data[column][row][:self.s_index] + self.value + "</td>"
@@ -169,7 +170,3 @@ def writeHTML(data, path):
     with open(path, "w") as writefile:
         writefile.write(html)
 
-
-    
-path = "/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html"
-r = readHTML(path)
