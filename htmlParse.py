@@ -120,6 +120,7 @@ class tableObject():
         t_columns = len(self.data)
         t_rows = len(table_lines) / t_columns
         for x in lines:
+            html +="\n"
             if x  in table_lines:
                 html += self.data[tl_count][tl_r_count]
                 tl_count += 1
