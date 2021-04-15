@@ -44,8 +44,6 @@ def getTable(data, table_id):
         table_data.append(data[line_count])
 
     rows = getLines(table_data, "tr")
-
-    print(rows)
     
     n_rows = [[]]
     row_number = 0
@@ -57,16 +55,12 @@ def getTable(data, table_id):
     cells = getLines(table_data, "td")
     for x in range(len(cells)):
         cells[x] += 1
-    print(cells)
 
     n_columns = int(len(cells)+1 / row_number)
     n_columns /= row_number
     n_columns = int(n_columns)
-
-    print(n_columns)
     
     for y in range(n_columns):
-        print(len(n_rows))
         n_rows.append([])
 
     active_row = -1
@@ -79,15 +73,12 @@ def getTable(data, table_id):
         if active_row == int(len(cells)/n_columns):
             active_row= 0
         tmp_rows[active_row].append(g+start_line)
-        print(tmp_rows)
         distance_between = int(n_columns + 2)
-        print(distance_between)
     new_tm = []
     for k in range(n_columns):
         new_tm.append([])
         for x in range(n_columns - 1):
             new_tm[k].append(cells[k]+start_line+(distance_between*x))
-        print(new_tm)
         
     n_rows = new_tm
         
@@ -109,7 +100,15 @@ class tableObject():
         for x in range(len(self.data)):
             for y in range(len(self.data[x])):
                 self.text = self.text + self.data[x][y]+"\n"
-
+                
+    def columnToLetter(self, column):
+        letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                   "K", "L", "M", "N", "O", "P", "Q", "R", "T", "U",
+                   "V", "W", "X", "Y", "Z", "AA", "BB", "CC", "DD",
+                   "EE", "FF", "GG", "HH", "II", "JJ", "KK", "LL",
+                   "MM", "NN", "OO", "PP", "QQ", "RR", "SS", "TT",
+                   "UU", "VV", "WW", "XX", "YY", "ZZ"]
+        return letters[column]
     def letterToColumn(self, letter):
         letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
                    "K", "L", "M", "N", "O", "P", "Q", "R", "T", "U",
@@ -191,12 +190,63 @@ class tableObject():
         pass
         #add <td></td> to the END of each <tr> segment, and get the line number Y > X
         #for each <tr> segment, increase self.end by 1
-        #for each sub-list in self.cells, append the <td> line number to the sub-list
-        
-        
-    
+        #for each sub-list in self.cells, append the <td> line number to the sub-list    
             
+    def getRange(self, r):
+        r = r.split(":")
+        cells = []
+        start_column = self.letterToColumn(r[0])
+        end_column = self.letterToColumn(r[1])
+        if len(r[0]) == 2:
+            start_row = int(r[0][1])-1
+        elif len(r[0]) == 3:
+            start_row = int(r[0][2])-1
+        if len(r[1]) == 2:
+            end_row = int(r[1][1])-1
+        elif len(r[1]) == 3:
+            end_row = int(r[1][2])-1
 
+        for x in range(start_row, end_row+1):
+            for y in range(start_column, end_column+1):
+                c = self.columnToLetter(y)
+                cells.append(c+str(x+1))
+        return cells
+
+    def sum(self, r):
+        s = self.getRange(r)
+        st = 0
+        for g in range(len(s)):
+            st += self.get(s[g],t='i')
+        return st
+
+    def average(self, r):
+        s = self.sum(r)
+        sl = len(self.getRange(r))
+        s = s / sl
+        return s
+
+    def count(self, r):
+        s = len(self.getRange(r))
+        return s
+
+    def high(self, r):
+        s = self.getRange(r)
+        h = 0
+        for g in range(len(s)):
+            n = int(self.get(s[g],t='i'))
+            if  n > h:
+                h = n
+        return h
+
+    def low(self, r):
+        s = self.getRange(r)
+        h = 1000000000
+        for g in range(len(s)):
+            n = int(self.get(s[g],t='i'))
+            if  n < h:
+                h = n
+        return h
+           
 def writeHTML(data, path):
     html = ""
     for k in data:
