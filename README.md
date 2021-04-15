@@ -44,8 +44,6 @@ t=tableObject(getTable(r, "numbers"), r) #where r is readHTML(path)
 t.set(0,0,"new")
 t.putBack(path)
 ```
-## Set and update
-If you want to re-write the HTML instantly and automatically after setting a cell value, use `tableObject.update`, which takes the same parameters as `set` as well as `path`.  This will automatically call `putBack()`. Parameters are: row, column, value, path. 
 
 ## Getting and changing between tags
 `getLines` takes data from `readHTML` and finds the lines containing any given HTML tag such as `<p>` or `<input>`, returning them as a list. This list can be used for `getBetweenTags`, which takes one line and isolates the content between given tags. `changeBetweenTags` takes this a step further by allowing the content between tags on the specified line to be replaced. `writeHTML` updates the HTML document with any changes made this way. 
