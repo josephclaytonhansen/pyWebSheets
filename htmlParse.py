@@ -44,26 +44,52 @@ def getTable(data, table_id):
         table_data.append(data[line_count])
 
     rows = getLines(table_data, "tr")
+
+    print(rows)
+    
     n_rows = [[]]
     row_number = 0
     for x in rows:
         if rows.index(x) % 2 == 0:
             n_rows[0].append(x+start_line+2)
-    row_number = len(n_rows)
-    cells = getLines(table_data, "td")
 
-    n_columns = len(cells) - row_number
-    for y in range(n_columns-2):
+    row_number = len(n_rows[0])
+    cells = getLines(table_data, "td")
+    for x in range(len(cells)):
+        cells[x] += 1
+    print(cells)
+
+    n_columns = int(len(cells)+1 / row_number)
+    n_columns /= row_number
+    n_columns = int(n_columns)
+
+    print(n_columns)
+    
+    for y in range(n_columns):
+        print(len(n_rows))
         n_rows.append([])
 
-    active_column = -1
-    active_row = 0
+    active_row = -1
+    tmp_rows = []
+    for y in range(n_columns):
+        tmp_rows.append([])
+        
     for g in cells:
-        if len(n_rows[active_row]) == n_columns-1:
-            active_row +=1
-        else:
-            active_column+=1
-            n_rows[active_row].append(g+start_line+active_row+active_column)
+        active_row+=1
+        if active_row == int(len(cells)/n_columns):
+            active_row= 0
+        tmp_rows[active_row].append(g+start_line)
+        print(tmp_rows)
+    distance_between = len(cells)-1
+    new_tm = []
+    for k in range(n_columns):
+        new_tm.append([])
+        new_tm[k].append(cells[k]+start_line)
+        new_tm[k].append(cells[k]+start_line+distance_between)
+        print(new_tm)
+        
+    n_rows = new_tm
+        
             
     return [start_line, end_line, n_rows]
 
@@ -159,6 +185,24 @@ class tableObject():
                 html += data[x]
         with open(path, "w") as writefile:
             writefile.write(html)
+
+    def addRow(self):
+        #add <td></td> to the END of each <tr> segment, and get the line number Y > X
+        for x in range(len(self.data)):
+            for y in range(len(self.data[x])):
+                if x >= 0:
+                    prev = self.data[x-1][y][:self.data[x-1][y].find("<")]+"<td></td>"
+                    print(prev)
+                if x > 0:
+                    self.cells[x][y] += x
+            self.data[x].append(prev)
+            self.end += 1
+            
+
+        #for each <tr> segment, increase self.end by 1
+        #for each sub-list in self.cells, append the <td> line number to the sub-list
+        
+        
     
             
 
