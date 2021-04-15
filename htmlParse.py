@@ -103,6 +103,36 @@ class tableObject():
         else:
             return self.data[column][row][self.data[column][row].find("<td>")+4:self.data[column][row].find("</td>")]
 
+    def putBack(self,path):
+        data=readHTML(path)
+        count=-1
+        lines = []
+        table_lines = []
+        for line in data:
+            count+=1
+            lines.append(count)
+        for x in self.cells:
+            for y in x:
+                table_lines.append(y)
+        html = ""
+        tl_count = 0
+        tl_r_count = 0
+        t_columns = len(self.data)
+        t_rows = len(table_lines) / t_columns
+        for x in lines:
+            if x  in table_lines:
+                html += self.data[tl_count][tl_r_count]
+                tl_count += 1
+                if tl_count == t_columns:
+                    tl_count = 0
+                    tl_r_count += 1
+            else:
+                html += data[x]
+        with open(path, "w") as writefile:
+            writefile.write(html)
+    
+            
+
 def writeHTML(data, path):
     html = ""
     for k in data:
@@ -110,5 +140,8 @@ def writeHTML(data, path):
         html += "\n"
     with open(path, "w") as writefile:
         writefile.write(html)
-        
-be_read = readHTML("/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html")
+
+
+    
+path = "/Users/frozendessertsupplies/Desktop/edit_HTML_table_from_Python/pyWebSheets/index.html"     
+r = readHTML(path)
