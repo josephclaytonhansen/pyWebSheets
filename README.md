@@ -55,6 +55,19 @@ t.set("A1","new")
 t.putBack(path)
 ```
 
+## Range operations for number ranges
+These operations require that cells selected contain numbers, not text- text will cause errors.
+### Getting a range
+`tableObject.getRange(notation)` will return all the cells in notation, where notation is in format "A1:A2". These cells are returned as notation.
+### Sum
+`tableObject.sum(range)` takes a range (using notation as noted above) and returns the sum as a number.
+### Average
+`tableObject.average(range)` returns the average.
+### Low/High
+`tableObject.low(range)` and `tableObject.high(range)` return the lowest and highest numbers in the range. 
+### Count
+`tableObject.count(range)` returns the number of cells in the range. 
+
 ## Getting and changing between tags
 `getLines` takes data from `readHTML` and finds the lines containing any given HTML tag such as `<p>` or `<input>`, returning them as a list. This list can be used for `getBetweenTags`, which takes one line and isolates the content between given tags. `changeBetweenTags` takes this a step further by allowing the content between tags on the specified line to be replaced. `writeHTML` updates the HTML document with any changes made this way. 
 ## TODO
